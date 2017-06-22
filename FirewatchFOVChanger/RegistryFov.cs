@@ -27,19 +27,20 @@ namespace FirewatchFOVChanger
             }
         }
 
-        protected override int GetValue()
+        public override int Value
         {
-            return ((RegValueDirty as int?) ?? 0) / 100 + DEFAULT;
+            get { return ((RegValueDirty as int?) ?? 0) / 100 + DEFAULT; }
+
+            set
+            {
+                Registry.SetValue(
+                    REG_KEY_PATH,
+                    REG_VALUE_NAME,
+                    (value - DEFAULT) * 100);
+
+                base.Value = value;
+            }
         }
 
-        protected override void SetValue(int value)
-        {
-            Registry.SetValue(
-                REG_KEY_PATH,
-                REG_VALUE_NAME,
-                (value - DEFAULT) * 100);
-
-            base.SetValue(value);
-        }
-    }
+    } // class
 }

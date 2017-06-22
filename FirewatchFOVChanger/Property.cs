@@ -14,28 +14,15 @@ namespace FirewatchFOVChanger
         }
 
         protected T _value;
-        public T Value
+        public virtual T Value
         {
-            get
-            {
-                return GetValue(); 
-            }
+            get { return _value; }
 
             set
             {
-                SetValue(value);
+                _value = value;
                 OnPropertyChanged(VALUE_NAME);
             }
-        }
-
-        protected virtual void SetValue(T value)
-        {
-            _value = value;
-        }
-
-        protected virtual T GetValue()
-        {
-            return _value;
         }
     }
 }
