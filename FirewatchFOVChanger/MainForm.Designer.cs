@@ -127,7 +127,6 @@
             0,
             0,
             0});
-            this.fovUpDown.ValueChanged += new System.EventHandler(this.fovUpDown_ValueChanged);
             // 
             // fovTrackBar
             // 
@@ -140,7 +139,6 @@
             this.fovTrackBar.Size = new System.Drawing.Size(350, 45);
             this.fovTrackBar.TabIndex = 12;
             this.fovTrackBar.Value = 55;
-            this.fovTrackBar.ValueChanged += new System.EventHandler(this.fovTrackBar_ValueChanged);
             // 
             // MainForm
             // 

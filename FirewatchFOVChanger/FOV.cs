@@ -7,15 +7,15 @@ namespace FirewatchFOVChanger
     {
         const string REG_KEY_PATH = "HKEY_CURRENT_USER\\SOFTWARE\\CampoSanto\\Firewatch";
         const string REG_VALUE_NAME = "fovAdjust_h2041137991";
+
         public const int DEFAULT = 55;
         public const int MAX_VALUE = 110;
+        public const string REG_PROPERTYNAME = "RegValue";
+        public const string VALUE_PROPERTYNAME = "Value";
 
         public static bool IsFireWatched
         {
-            get
-            {
-                return RegValue != null;
-            }
+            get { return RegValueDirty != null; }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -25,7 +25,7 @@ namespace FirewatchFOVChanger
             pceh?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        static object RegValue
+        static object RegValueDirty
         {
             get
             {
@@ -37,23 +37,32 @@ namespace FirewatchFOVChanger
             }
         }
 
+        public int RegValue
+        {
+            get { return ((RegValueDirty as int?) ?? 0) / 100 + DEFAULT; }
+        }
+
+
+        int preValue = -1;
         public int Value
         {
-            get
-            {
-                return
-                    ((RegValue as int?) ?? 0) / 100 + DEFAULT;
-            }
+            get { return preValue; }
 
             set
             {
-                Registry.SetValue(
-                    REG_KEY_PATH,
-                    REG_VALUE_NAME,
-                    (value - DEFAULT) * 100);
-
-                OnPropertyChanged("Value");
+                preValue = value;
+                OnPropertyChanged(VALUE_PROPERTYNAME);
             }
-        } // Value get/set
+        }
+
+        public void Store()
+        {
+            Registry.SetValue(
+                REG_KEY_PATH,
+                REG_VALUE_NAME,
+                (preValue - DEFAULT) * 100);
+
+            OnPropertyChanged(REG_PROPERTYNAME);
+        }
     }
 }

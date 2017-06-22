@@ -19,41 +19,40 @@ namespace FirewatchFOVChanger
             minLabel.Text = FOV.DEFAULT.ToString();
             maxLabel.Text = FOV.MAX_VALUE.ToString();
 
-            fov.PropertyChanged +=
-                (s, ea) =>
-                {
-                    if (ea.PropertyName == "Value")
-                    {
-                        int foval = ((s as FOV)?.Value) ?? FOV.DEFAULT;
+            fovTrackBar.DataBindings.Add(
+                new Binding( "Value",
+                    fov, FOV.VALUE_PROPERTYNAME,
+                    false, DataSourceUpdateMode.OnPropertyChanged));
 
-                        fovLabel.Text = $"Current FOV: {foval}  -->";
-                        fovTrackBar.Value = foval;
-                        defaultButton.Enabled = fovTrackBar.Value != FOV.DEFAULT;
-                    }
+            fovUpDown.DataBindings.Add(
+                new Binding( "Value",
+                    fov, FOV.VALUE_PROPERTYNAME,
+                    false, DataSourceUpdateMode.OnPropertyChanged));
+
+            Binding b = new Binding( "Text", fov, FOV.REG_PROPERTYNAME);
+            b.Format +=
+                (s, e) => {
+                    e.Value = $"Current FOV: { fov.RegValue }  -->";
+                };
+            fovLabel.DataBindings.Add(b);
+
+            fov.PropertyChanged +=
+                (s, ea) => {
+                    defaultButton.Enabled = (fov.Value) != FOV.DEFAULT;
                 };
 
-            fov.OnPropertyChanged("Value");
+            fov.Value = fov.RegValue;
         }
 
         private void defaultButton_Click(object sender, EventArgs e)
         {
             fov.Value = FOV.DEFAULT;
+            fov.Store();
         }
 
         private void applyButton_Click(object sender, EventArgs e)
         {
-            fov.Value = fovTrackBar.Value;
-        }
-
-        private void fovTrackBar_ValueChanged(object sender, EventArgs e)
-        {
-            fovUpDown.Value = fovTrackBar.Value;
-            defaultButton.Enabled = fovTrackBar.Value != FOV.DEFAULT;
-        }
-
-        private void fovUpDown_ValueChanged(object sender, EventArgs e)
-        {
-            fovTrackBar.Value = (int)fovUpDown.Value;
+            fov.Store();
         }
     }
 }
