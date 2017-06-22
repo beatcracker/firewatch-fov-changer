@@ -45,20 +45,20 @@
             // fovLabel
             // 
             this.fovLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.fovLabel.Location = new System.Drawing.Point(88, 166);
+            this.fovLabel.Location = new System.Drawing.Point(82, 165);
             this.fovLabel.Name = "fovLabel";
-            this.fovLabel.Size = new System.Drawing.Size(143, 26);
+            this.fovLabel.Size = new System.Drawing.Size(163, 26);
             this.fovLabel.TabIndex = 7;
             this.fovLabel.Text = "Current FOV: ??.  New FOV:";
-            this.fovLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.fovLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // defaultButton
             // 
             this.defaultButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.defaultButton.Location = new System.Drawing.Point(12, 167);
+            this.defaultButton.Location = new System.Drawing.Point(12, 166);
             this.defaultButton.Name = "defaultButton";
-            this.defaultButton.Size = new System.Drawing.Size(75, 25);
-            this.defaultButton.TabIndex = 8;
+            this.defaultButton.Size = new System.Drawing.Size(70, 25);
+            this.defaultButton.TabIndex = 2;
             this.defaultButton.Text = "Default";
             this.defaultButton.UseVisualStyleBackColor = true;
             this.defaultButton.Click += new System.EventHandler(this.defaultButton_Click);
@@ -68,7 +68,7 @@
             this.minLabel.AutoSize = true;
             this.minLabel.Location = new System.Drawing.Point(12, 148);
             this.minLabel.Name = "minLabel";
-            this.minLabel.Size = new System.Drawing.Size(23, 13);
+            this.minLabel.Size = new System.Drawing.Size(26, 13);
             this.minLabel.TabIndex = 9;
             this.minLabel.Text = "min";
             // 
@@ -77,7 +77,7 @@
             this.maxLabel.AutoSize = true;
             this.maxLabel.Location = new System.Drawing.Point(336, 148);
             this.maxLabel.Name = "maxLabel";
-            this.maxLabel.Size = new System.Drawing.Size(26, 13);
+            this.maxLabel.Size = new System.Drawing.Size(27, 13);
             this.maxLabel.TabIndex = 9;
             this.maxLabel.Text = "max";
             this.maxLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
@@ -85,10 +85,10 @@
             // applyButton
             // 
             this.applyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.applyButton.Location = new System.Drawing.Point(287, 167);
+            this.applyButton.Location = new System.Drawing.Point(293, 167);
             this.applyButton.Name = "applyButton";
-            this.applyButton.Size = new System.Drawing.Size(75, 25);
-            this.applyButton.TabIndex = 10;
+            this.applyButton.Size = new System.Drawing.Size(70, 25);
+            this.applyButton.TabIndex = 4;
             this.applyButton.Text = "Apply";
             this.applyButton.UseVisualStyleBackColor = true;
             this.applyButton.Click += new System.EventHandler(this.applyButton_Click);
@@ -96,7 +96,7 @@
             // fovUpDown
             // 
             this.fovUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.fovUpDown.Location = new System.Drawing.Point(232, 170);
+            this.fovUpDown.Location = new System.Drawing.Point(244, 169);
             this.fovUpDown.Maximum = new decimal(new int[] {
             110,
             0,
@@ -108,8 +108,9 @@
             0,
             0});
             this.fovUpDown.Name = "fovUpDown";
-            this.fovUpDown.Size = new System.Drawing.Size(49, 20);
-            this.fovUpDown.TabIndex = 11;
+            this.fovUpDown.Size = new System.Drawing.Size(39, 22);
+            this.fovUpDown.TabIndex = 3;
+            this.fovUpDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.fovUpDown.Value = new decimal(new int[] {
             55,
             0,
@@ -125,7 +126,7 @@
             this.fovTrackBar.Minimum = 55;
             this.fovTrackBar.Name = "fovTrackBar";
             this.fovTrackBar.Size = new System.Drawing.Size(350, 45);
-            this.fovTrackBar.TabIndex = 12;
+            this.fovTrackBar.TabIndex = 1;
             this.fovTrackBar.Value = 55;
             // 
             // pbLogo
@@ -153,6 +154,7 @@
             this.Controls.Add(this.fovLabel);
             this.Controls.Add(this.pbLogo);
             this.Controls.Add(this.fovTrackBar);
+            this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
