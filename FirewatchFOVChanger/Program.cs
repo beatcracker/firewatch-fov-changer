@@ -5,15 +5,16 @@ namespace FirewatchFOVChanger
 {
     static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Main());
+
+            if (!RegistryFov.IsFireWatched)
+                MessageBox.Show("It is good if you install Firewatch first.", "Can't find Firewatch");
+
+            Application.Run(new MainForm());
         }
     }
 }
