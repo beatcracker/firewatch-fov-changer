@@ -1,6 +1,6 @@
 # Change FOV in [Firewatch](http://www.firewatchgame.com/) [![Build status](https://ci.appveyor.com/api/projects/status/k73av165njrmowf9/branch/master?svg=true)](https://ci.appveyor.com/project/beatcracker/firewatch-fov-changer/branch/master)
 
-![Firewatch FOV Changer](img/FirewatchFOVChanger.png)
+![Firewatch FOV Changer](https://user-images.githubusercontent.com/11328666/27429802-0c37c940-574f-11e7-98d9-58cda3b526a8.png)
 
 Download executable file in [Releases](https://github.com/beatcracker/firewatch-fov-changer/releases) section.
 
