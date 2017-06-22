@@ -45,11 +45,11 @@
             // fovLabel
             // 
             this.fovLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.fovLabel.Location = new System.Drawing.Point(93, 172);
+            this.fovLabel.Location = new System.Drawing.Point(88, 167);
             this.fovLabel.Name = "fovLabel";
-            this.fovLabel.Size = new System.Drawing.Size(133, 13);
+            this.fovLabel.Size = new System.Drawing.Size(143, 26);
             this.fovLabel.TabIndex = 7;
-            this.fovLabel.Text = "Current FOV: ?? -->";
+            this.fovLabel.Text = "Current FOV: ??.  New FOV:";
             this.fovLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // pbLogo
@@ -67,9 +67,9 @@
             // defaultButton
             // 
             this.defaultButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.defaultButton.Location = new System.Drawing.Point(12, 167);
+            this.defaultButton.Location = new System.Drawing.Point(12, 168);
             this.defaultButton.Name = "defaultButton";
-            this.defaultButton.Size = new System.Drawing.Size(75, 23);
+            this.defaultButton.Size = new System.Drawing.Size(75, 25);
             this.defaultButton.TabIndex = 8;
             this.defaultButton.Text = "Default";
             this.defaultButton.UseVisualStyleBackColor = true;
@@ -97,9 +97,9 @@
             // applyButton
             // 
             this.applyButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.applyButton.Location = new System.Drawing.Point(287, 167);
+            this.applyButton.Location = new System.Drawing.Point(287, 168);
             this.applyButton.Name = "applyButton";
-            this.applyButton.Size = new System.Drawing.Size(75, 23);
+            this.applyButton.Size = new System.Drawing.Size(75, 25);
             this.applyButton.TabIndex = 10;
             this.applyButton.Text = "Apply";
             this.applyButton.UseVisualStyleBackColor = true;
@@ -108,7 +108,7 @@
             // fovUpDown
             // 
             this.fovUpDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.fovUpDown.Location = new System.Drawing.Point(232, 170);
+            this.fovUpDown.Location = new System.Drawing.Point(232, 171);
             this.fovUpDown.Maximum = new decimal(new int[] {
             110,
             0,
@@ -153,11 +153,12 @@
             this.Controls.Add(this.fovLabel);
             this.Controls.Add(this.pbLogo);
             this.Controls.Add(this.fovTrackBar);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Firewatch FOV Changer";
             ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.fovUpDown)).EndInit();

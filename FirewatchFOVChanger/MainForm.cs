@@ -33,7 +33,7 @@ namespace FirewatchFOVChanger
             Binding b = new Binding( "Text", regFov, RegistryFov.VALUE_NAME);
             b.Format +=
                 (s, e) => {
-                    e.Value = $"Current FOV: { regFov.Value }  -->";
+                    e.Value = $"Current FOV: { regFov.Value }.  New FOV:";
                 };
             fovLabel.DataBindings.Add(b);
 
