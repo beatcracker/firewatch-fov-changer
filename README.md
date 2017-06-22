@@ -2,6 +2,8 @@
 
 ![Firewatch FOV Changer](img/FirewatchFOVChanger.png)
 
+Download zip archive with executbale file in [Releases](releases) section.
+
 # Details
 
 Default FOV in Firewatch is `55`, which is quite low for the most of the users. This app allows you to change FOV by modifying Firewatch settings in registry.
