@@ -1,0 +1,21 @@
+image: Visual Studio 2017
+
+environment:
+  DOTNET_CLI_TELEMETRY_OPTOUT: true
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+
+artifacts:
+  - path: bin\Release\FirewatchFOVChanger.exe
+    name: Firewatch FOV Changer
+
+platform: Any CPU
+
+configuration: Release
+
+matrix:
+  fast_finish: true
+
+skip_commits:
+  message: /^(?=.*update)(?=.*readme).*$/
+
+version: 1.0.{build}
