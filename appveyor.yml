@@ -27,3 +27,6 @@ deploy:
   auth_token:
     secure: ltfXN53qT1hrXcMPfyqUoKjAKtYZ7eFyso5vsQRLLO5IFkn1+kgPueU0RfmGv/qc
   artifact: 'Firewatch FOV Changer'
+  on:
+    branch: master
+    appveyor_repo_tag: true  
