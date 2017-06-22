@@ -5,54 +5,55 @@ namespace FirewatchFOVChanger
 {
     public partial class MainForm : Form
     {
-        FOV fov = new FOV();
+        Property<int> fov = new Property<int>();
+        RegistryFov regFov = new RegistryFov();
 
         public MainForm()
         {
             InitializeComponent();
 
             fovUpDown.Minimum =
-                fovTrackBar.Minimum = FOV.DEFAULT;
+                fovTrackBar.Minimum = RegistryFov.DEFAULT;
             fovUpDown.Maximum =
-                fovTrackBar.Maximum = FOV.MAX_VALUE;
+                fovTrackBar.Maximum = RegistryFov.MAX_VALUE;
 
-            minLabel.Text = FOV.DEFAULT.ToString();
-            maxLabel.Text = FOV.MAX_VALUE.ToString();
+            minLabel.Text = RegistryFov.DEFAULT.ToString();
+            maxLabel.Text = RegistryFov.MAX_VALUE.ToString();
 
             fovTrackBar.DataBindings.Add(
                 new Binding( "Value",
-                    fov, FOV.VALUE_PROPERTYNAME,
+                    fov, Property<int>.VALUE_NAME,
                     false, DataSourceUpdateMode.OnPropertyChanged));
 
             fovUpDown.DataBindings.Add(
                 new Binding( "Value",
-                    fov, FOV.VALUE_PROPERTYNAME,
+                    fov, Property<int>.VALUE_NAME,
                     false, DataSourceUpdateMode.OnPropertyChanged));
 
-            Binding b = new Binding( "Text", fov, FOV.REG_PROPERTYNAME);
+            Binding b = new Binding( "Text", regFov, RegistryFov.VALUE_NAME);
             b.Format +=
                 (s, e) => {
-                    e.Value = $"Current FOV: { fov.RegValue }  -->";
+                    e.Value = $"Current FOV: { regFov.Value }  -->";
                 };
             fovLabel.DataBindings.Add(b);
 
             fov.PropertyChanged +=
                 (s, ea) => {
-                    defaultButton.Enabled = (fov.Value) != FOV.DEFAULT;
+                    defaultButton.Enabled = (fov.Value) != RegistryFov.DEFAULT;
                 };
 
-            fov.Value = fov.RegValue;
+            fov.Value = regFov.Value;
         }
 
         private void defaultButton_Click(object sender, EventArgs e)
         {
-            fov.Value = FOV.DEFAULT;
-            fov.Store();
+            regFov.Value = 
+                fov.Value = RegistryFov.DEFAULT;
         }
 
         private void applyButton_Click(object sender, EventArgs e)
         {
-            fov.Store();
+            regFov.Value = fov.Value;
         }
     }
 }

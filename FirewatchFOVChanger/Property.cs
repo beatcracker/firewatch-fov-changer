@@ -4,6 +4,8 @@ namespace FirewatchFOVChanger
 {
     public class Property<T> : INotifyPropertyChanged
     {
+        public const string VALUE_NAME = "Value";
+
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged(string propertyName)
         {
@@ -11,19 +13,29 @@ namespace FirewatchFOVChanger
             pceh?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        T _value;
+        protected T _value;
         public T Value
         {
             get
             {
-                return _value; 
+                return GetValue(); 
             }
 
             set
             {
-                _value = value;
-                OnPropertyChanged("Value");
+                SetValue(value);
+                OnPropertyChanged(VALUE_NAME);
             }
+        }
+
+        protected virtual void SetValue(T value)
+        {
+            _value = value;
+        }
+
+        protected virtual T GetValue()
+        {
+            return _value;
         }
     }
 }

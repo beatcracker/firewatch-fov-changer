@@ -11,7 +11,7 @@ namespace FirewatchFOVChanger
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            if (!FOV.IsFireWatched)
+            if (!RegistryFov.IsFireWatched)
                 MessageBox.Show("It is good if you install Firewatch first.", "Can't find Firewatch");
 
             Application.Run(new MainForm());
