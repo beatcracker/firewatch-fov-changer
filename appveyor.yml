@@ -19,3 +19,11 @@ skip_commits:
   message: /^(?=.*update)(?=.*readme).*$/
 
 version: 1.0.{build}
+
+deploy:
+  release: FirewatchFOVChanger-v$(appveyor_build_version)
+  description: 'Firewatch FOV Changer'
+  provider: GitHub
+  auth_token:
+    secure: ltfXN53qT1hrXcMPfyqUoKjAKtYZ7eFyso5vsQRLLO5IFkn1+kgPueU0RfmGv/qc
+  artifact: 'Firewatch FOV Changer'
