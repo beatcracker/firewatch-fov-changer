@@ -2,7 +2,7 @@
 
 ![Firewatch FOV Changer](img/FirewatchFOVChanger.png)
 
-Download zip archive with executable file in [Releases](https://github.com/beatcracker/firewatch-fov-changer/releases) section.
+Download executable file in [Releases](https://github.com/beatcracker/firewatch-fov-changer/releases) section.
 
 # Details
 
