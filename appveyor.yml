@@ -5,7 +5,7 @@ environment:
   DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
 
 artifacts:
-  - path: FirewatchFOVChanger\bin\Release\FirewatchFOVChanger.exe
+  - path: bin\Release\FirewatchFOVChanger.exe
     name: Firewatch FOV Changer
 
 platform: Any CPU
