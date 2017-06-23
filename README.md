@@ -21,7 +21,7 @@ FirewatchFOVChanger.exe 75 -s
 
 ```
 
-### Set FOV to 75, silently.
+### Set FOV to 75, silently
 
 
 ```
