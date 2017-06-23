@@ -17,7 +17,7 @@ Download executable file in [Releases](https://github.com/beatcracker/firewatch-
 
 
 ```
-FirewatchFOVChanger.exe 75 -s
+FirewatchFOVChanger.exe 75
 
 ```
 
