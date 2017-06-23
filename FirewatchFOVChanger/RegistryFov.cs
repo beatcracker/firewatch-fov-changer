@@ -8,6 +8,7 @@ namespace FirewatchFOVChanger
         const string REG_VALUE_NAME = "fovAdjust_h2041137991";
 
         public const int DEFAULT = 55;
+        public const int MIN_VALUE = DEFAULT;
         public const int MAX_VALUE = 110;
 
         public static bool IsFireWatched
