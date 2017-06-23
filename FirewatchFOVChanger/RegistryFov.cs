@@ -28,20 +28,31 @@ namespace FirewatchFOVChanger
             }
         }
 
+        private int WrapFov(int fov)
+        {
+            if (fov < MIN_VALUE)
+                fov = MIN_VALUE;
+            if (fov > MAX_VALUE)
+                fov = MAX_VALUE;
+            return fov;
+        }
+
         public override int Value
         {
-            get { return ((RegValueDirty as int?) ?? 0) / 100 + MIN_VALUE; }
+            get { return WrapFov(((RegValueDirty as int?) ?? 0) / 100 + MIN_VALUE); }
 
             set
             {
+                int fov = WrapFov(value);
+
                 Registry.SetValue(
                     REG_KEY_PATH,
                     REG_VALUE_NAME,
-                    (value - MIN_VALUE) * 100);
+                    (fov - MIN_VALUE) * 100);
 
-                base.Value = value;
+                base.Value = fov;
             }
-        }
+        } // Value
 
     } // class
 }

@@ -23,6 +23,8 @@ namespace FirewatchFOVChanger
         {
             InitializeComponent();
 
+            Text = Program.APP_TITLE;
+
             fovUpDown.Minimum =
                 fovTrackBar.Minimum = RegistryFov.MIN_VALUE;
             fovUpDown.Maximum =
@@ -125,6 +127,19 @@ namespace FirewatchFOVChanger
             return (1f - (currentFov - RegistryFov.MIN_VALUE) / (float)RegistryFov.MIN_VALUE) * CURTAIN_MAX_W;
             //float kx = 1f - (currentFov - RegistryFov.MIN_VALUE) / (float)RegistryFov.MIN_VALUE;
             //float wx = CURTAIN_MAX_W * kx;
+        }
+
+        private void MainForm_HelpButtonClicked(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MessageBox.Show(
+@"Opensourced under the MIT License
+Latest version at https://github.com/beatcracker
+
+" + Program.HelpText,
+                $"About {Program.APP_TITLE}"
+            ); // MessageBox
+
+            e.Cancel = true;
         }
     } // class
 }
