@@ -43,3 +43,7 @@ You can also [do this manually](http://steamcommunity.com/app/383870/discussions
 * Right click on `fovAdjust_h2041137991` and choose `Modify`. Set the base to be `Decimal`.
 
 * Set the value to be `100` times the amount you want to adjust the FOV by. For example, if you wanted the FOV to be `90` you need to increase the FOV by `35`. So the value of `fovAdjust_h2041137991` should be `3500` (35 * 100).
+
+# Credits
+
+[@nikvoronin](https://github.com/nikvoronin) for some heavy code polishing and eye candy.
