@@ -1,49 +1,81 @@
 ﻿using System;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.IO;
 using System.Windows.Forms;
 
 namespace FirewatchFOVChanger
 {
     public partial class MainForm : Form
     {
+        const float CURTAIN_MAX_W = 90; // px
+        const float CURTAIN_MAX_H = 8;  // px
+        const int CURTAIN_MAX_A = 150;  // 0 = transparent, 255 = solid
+        readonly Color CURTAIN_TOP_COLOR = Color.Orange;
+        readonly Color CURTAIN_BOT_COLOR = Color.Black;
+        readonly LinearGradientBrush CURTAIN_BRUSH;
+        readonly Pen REGFOV_BOUNDS_PEN = new Pen(Color.Black) { DashStyle = DashStyle.Dot};
+
         Property<int> fov = new Property<int>();
         RegistryFov regFov = new RegistryFov();
+        int cachedRegFov = -1;
 
         public MainForm()
         {
             InitializeComponent();
 
+            Text = Program.APP_TITLE;
+
             fovUpDown.Minimum =
-                fovTrackBar.Minimum = RegistryFov.DEFAULT;
+                fovTrackBar.Minimum = RegistryFov.MIN_VALUE;
             fovUpDown.Maximum =
                 fovTrackBar.Maximum = RegistryFov.MAX_VALUE;
 
-            minLabel.Text = RegistryFov.DEFAULT.ToString();
+            minLabel.Text = RegistryFov.MIN_VALUE.ToString();
             maxLabel.Text = RegistryFov.MAX_VALUE.ToString();
 
+            #region Model-View Bindings
             fovTrackBar.DataBindings.Add(
-                new Binding( "Value",
+                new Binding("Value",
                     fov, Property<int>.VALUE_NAME,
                     false, DataSourceUpdateMode.OnPropertyChanged));
 
             fovUpDown.DataBindings.Add(
-                new Binding( "Value",
+                new Binding("Value",
                     fov, Property<int>.VALUE_NAME,
                     false, DataSourceUpdateMode.OnPropertyChanged));
 
-            Binding b = new Binding( "Text", regFov, RegistryFov.VALUE_NAME);
+            Binding b = new Binding("Text", regFov, RegistryFov.VALUE_NAME);
             b.Format +=
                 (s, e) => {
-                    e.Value = $"Current FOV: { regFov.Value }.  New FOV:";
+                    e.Value = $"FOV: { regFov.Value }";
                 };
             fovLabel.DataBindings.Add(b);
 
             fov.PropertyChanged +=
                 (s, ea) => {
                     defaultButton.Enabled = (fov.Value) != RegistryFov.DEFAULT;
+                    pbLogo.Invalidate();
                 };
 
-            fov.Value = regFov.Value;
-        }
+            regFov.PropertyChanged +=
+                (s, ea) => {
+                    cachedRegFov = regFov.Value;
+                };
+        #endregion
+
+            cachedRegFov =
+                fov.Value = regFov.Value;
+
+            CURTAIN_BRUSH = new LinearGradientBrush(
+                new RectangleF(
+                    0, 0,
+                    CURTAIN_MAX_W, pbLogo.Height),
+                Color.FromArgb(CURTAIN_MAX_A, CURTAIN_TOP_COLOR),
+                Color.FromArgb(CURTAIN_MAX_A, CURTAIN_BOT_COLOR),
+                LinearGradientMode.Vertical)
+                { GammaCorrection = true };
+        } // ctor
 
         private void defaultButton_Click(object sender, EventArgs e)
         {
@@ -54,6 +86,68 @@ namespace FirewatchFOVChanger
         private void applyButton_Click(object sender, EventArgs e)
         {
             regFov.Value = fov.Value;
+            pbLogo.Invalidate();
         }
-    }
+
+        private void pbLogo_Paint(object sender, PaintEventArgs e)
+        {
+            var g = e.Graphics;
+
+            float wx = ScaleToCurtainWidth(fov.Value);
+
+            RectangleF rect =
+                new RectangleF(
+                    0, 0,
+                    wx, pbLogo.Height);
+                    if ((DateTime.Now.DayOfWeek ==
+                    DayOfWeek.Friday) &&
+                    (DateTime.Now.Hour > 20))
+
+            // Left curtain
+            g.DrawImageUnscaled(pblogo, 134, 20);
+            g.FillRectangle(CURTAIN_BRUSH, rect);
+
+            // Right curtain
+            rect.X = pbLogo.Width - wx;
+            g.FillRectangle(CURTAIN_BRUSH, rect);
+
+            // Current FOV bounds
+            if (fov.Value != cachedRegFov)
+            {
+                wx = ScaleToCurtainWidth(cachedRegFov);
+
+                g.DrawLine(
+                    REGFOV_BOUNDS_PEN,
+                    wx, 0,
+                    wx, pbLogo.Height);
+
+                g.DrawLine(
+                    REGFOV_BOUNDS_PEN,
+                    pbLogo.Width - wx, 0,
+                    pbLogo.Width - wx, pbLogo.Height);
+            }
+        } // pbLogo_Paint()
+
+        float ScaleToCurtainWidth(int currentFov)
+        {
+            return (1f - (currentFov - RegistryFov.MIN_VALUE) / (float)RegistryFov.MIN_VALUE) * CURTAIN_MAX_W;
+            //float kx = 1f - (currentFov - RegistryFov.MIN_VALUE) / (float)RegistryFov.MIN_VALUE;
+            //float wx = CURTAIN_MAX_W * kx;
+        }
+
+        private void MainForm_HelpButtonClicked(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MessageBox.Show(
+@"Opensourced under the MIT License
+Latest version at https://github.com/beatcracker
+
+" + Program.HelpText,
+                $"About {Program.APP_TITLE}"
+            ); // MessageBox
+
+            e.Cancel = true;
+        }
+
+        Image pblogo = Image.FromStream(new MemoryStream(Convert.FromBase64String("iVBORw0KGgoAAAANSUhEUgAAAAgAAAANCAYAAACUwi84AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMTZEaa/1AAAAUElEQVQoU2P4//8/Aq+X/g/HUDHcCqAYpwQM45UEaYaYsE+KCAUwjKEAWRIdAxXhVwDERChAdwMaxq8A7gsg3lgh+L87ihcsiIxROJj4PwMAXjEohfpkEm4AAAAASUVORK5CYII="),true));
+    } // class
 }

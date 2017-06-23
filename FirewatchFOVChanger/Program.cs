@@ -3,11 +3,15 @@ using System.Windows.Forms;
 
 namespace FirewatchFOVChanger
 {
-    static class Program
+    static partial class Program
     {
         [STAThread]
-        static void Main()
+        static int Main(string[] args)
         {
+            ErrorLevel retVal = DoCmdLinesArgs(args);
+            if (retVal != ErrorLevel.NoArgs)
+                return (int)retVal;
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
@@ -15,6 +19,8 @@ namespace FirewatchFOVChanger
                 MessageBox.Show("It is good if you install Firewatch first.", "Can't find Firewatch");
 
             Application.Run(new MainForm());
+
+            return 0;
         }
-    }
+    } // class
 }

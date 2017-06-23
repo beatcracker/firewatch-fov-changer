@@ -65,6 +65,9 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Program.CmdLineArgs.cs" >
+		<DependentUpon>Program.cs</DependentUpon>
+	</Compile>
     <Compile Include="RegistryFov.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>

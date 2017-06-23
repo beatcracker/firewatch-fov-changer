@@ -8,6 +8,7 @@ namespace FirewatchFOVChanger
         const string REG_VALUE_NAME = "fovAdjust_h2041137991";
 
         public const int DEFAULT = 55;
+        public const int MIN_VALUE = DEFAULT;
         public const int MAX_VALUE = 110;
 
         public static bool IsFireWatched
@@ -27,20 +28,31 @@ namespace FirewatchFOVChanger
             }
         }
 
+        private int WrapFov(int fov)
+        {
+            if (fov < MIN_VALUE)
+                fov = MIN_VALUE;
+            if (fov > MAX_VALUE)
+                fov = MAX_VALUE;
+            return fov;
+        }
+
         public override int Value
         {
-            get { return ((RegValueDirty as int?) ?? 0) / 100 + DEFAULT; }
+            get { return WrapFov(((RegValueDirty as int?) ?? 0) / 100 + MIN_VALUE); }
 
             set
             {
+                int fov = WrapFov(value);
+
                 Registry.SetValue(
                     REG_KEY_PATH,
                     REG_VALUE_NAME,
-                    (value - DEFAULT) * 100);
+                    (fov - MIN_VALUE) * 100);
 
-                base.Value = value;
+                base.Value = fov;
             }
-        }
+        } // Value
 
     } // class
 }
