@@ -15,20 +15,20 @@ namespace FirewatchFOVChanger
         readonly LinearGradientBrush CURTAIN_BRUSH;
         readonly Pen REGFOV_BOUNDS_PEN = new Pen(Color.Black) { DashStyle = DashStyle.Dot};
 
-
         Property<int> fov = new Property<int>();
         RegistryFov regFov = new RegistryFov();
+        int cachedRegFov = -1;
 
         public MainForm()
         {
             InitializeComponent();
 
             fovUpDown.Minimum =
-                fovTrackBar.Minimum = RegistryFov.DEFAULT;
+                fovTrackBar.Minimum = RegistryFov.MIN_VALUE;
             fovUpDown.Maximum =
                 fovTrackBar.Maximum = RegistryFov.MAX_VALUE;
 
-            minLabel.Text = RegistryFov.DEFAULT.ToString();
+            minLabel.Text = RegistryFov.MIN_VALUE.ToString();
             maxLabel.Text = RegistryFov.MAX_VALUE.ToString();
 
             #region Model-View Bindings
@@ -54,20 +54,25 @@ namespace FirewatchFOVChanger
                     defaultButton.Enabled = (fov.Value) != RegistryFov.DEFAULT;
                     pbLogo.Invalidate();
                 };
+
+            regFov.PropertyChanged +=
+                (s, ea) => {
+                    cachedRegFov = regFov.Value;
+                };
             #endregion
+
+            cachedRegFov =
+                fov.Value = regFov.Value;
 
             CURTAIN_BRUSH = new LinearGradientBrush(
                 new RectangleF(
                     0, 0,
-                    CURTAIN_MAX_W, pbLogo.Height ),
+                    CURTAIN_MAX_W, pbLogo.Height),
                 Color.FromArgb(CURTAIN_MAX_A, CURTAIN_TOP_COLOR),
                 Color.FromArgb(CURTAIN_MAX_A, CURTAIN_BOT_COLOR),
-                LinearGradientMode.Vertical );
-
-            CURTAIN_BRUSH.GammaCorrection = true;
-
-            fov.Value = regFov.Value;
-        }
+                LinearGradientMode.Vertical)
+                { GammaCorrection = true };
+        } // ctor
 
         private void defaultButton_Click(object sender, EventArgs e)
         {
@@ -85,8 +90,7 @@ namespace FirewatchFOVChanger
         {
             var g = e.Graphics;
 
-            float kx = 1f - (fov.Value - RegistryFov.MIN_VALUE) / (float)RegistryFov.MIN_VALUE;
-            float wx = CURTAIN_MAX_W * kx;
+            float wx = ScaleToCurtainWidth(fov.Value);
 
             RectangleF rect =
                 new RectangleF(
@@ -100,10 +104,10 @@ namespace FirewatchFOVChanger
             rect.X = pbLogo.Width - wx;
             g.FillRectangle(CURTAIN_BRUSH, rect);
 
-            if (fov.Value != regFov.Value)
+            // Current FOV bounds
+            if (fov.Value != cachedRegFov)
             {
-                kx = 1f - (regFov.Value - RegistryFov.MIN_VALUE) / (float)RegistryFov.MIN_VALUE;
-                wx = CURTAIN_MAX_W * kx;
+                wx = ScaleToCurtainWidth(cachedRegFov);
 
                 g.DrawLine(
                     REGFOV_BOUNDS_PEN,
@@ -115,5 +119,12 @@ namespace FirewatchFOVChanger
                     pbLogo.Width - wx, pbLogo.Height);
             }
         } // pbLogo_Paint()
+
+        float ScaleToCurtainWidth(int currentFov)
+        {
+            return (1f - (currentFov - RegistryFov.MIN_VALUE) / (float)RegistryFov.MIN_VALUE) * CURTAIN_MAX_W;
+            //float kx = 1f - (currentFov - RegistryFov.MIN_VALUE) / (float)RegistryFov.MIN_VALUE;
+            //float wx = CURTAIN_MAX_W * kx;
+        }
     } // class
 }

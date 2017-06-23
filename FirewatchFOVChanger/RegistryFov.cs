@@ -30,14 +30,14 @@ namespace FirewatchFOVChanger
 
         public override int Value
         {
-            get { return ((RegValueDirty as int?) ?? 0) / 100 + DEFAULT; }
+            get { return ((RegValueDirty as int?) ?? 0) / 100 + MIN_VALUE; }
 
             set
             {
                 Registry.SetValue(
                     REG_KEY_PATH,
                     REG_VALUE_NAME,
-                    (value - DEFAULT) * 100);
+                    (value - MIN_VALUE) * 100);
 
                 base.Value = value;
             }
