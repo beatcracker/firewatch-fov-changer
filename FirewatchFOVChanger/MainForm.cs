@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
 using System.Windows.Forms;
 
 namespace FirewatchFOVChanger
@@ -35,16 +36,16 @@ namespace FirewatchFOVChanger
 
             #region Model-View Bindings
             fovTrackBar.DataBindings.Add(
-                new Binding( "Value",
+                new Binding("Value",
                     fov, Property<int>.VALUE_NAME,
                     false, DataSourceUpdateMode.OnPropertyChanged));
 
             fovUpDown.DataBindings.Add(
-                new Binding( "Value",
+                new Binding("Value",
                     fov, Property<int>.VALUE_NAME,
                     false, DataSourceUpdateMode.OnPropertyChanged));
 
-            Binding b = new Binding( "Text", regFov, RegistryFov.VALUE_NAME);
+            Binding b = new Binding("Text", regFov, RegistryFov.VALUE_NAME);
             b.Format +=
                 (s, e) => {
                     e.Value = $"FOV: { regFov.Value }";
@@ -61,7 +62,7 @@ namespace FirewatchFOVChanger
                 (s, ea) => {
                     cachedRegFov = regFov.Value;
                 };
-            #endregion
+        #endregion
 
             cachedRegFov =
                 fov.Value = regFov.Value;
@@ -98,8 +99,12 @@ namespace FirewatchFOVChanger
                 new RectangleF(
                     0, 0,
                     wx, pbLogo.Height);
+                    if ((DateTime.Now.DayOfWeek ==
+                    DayOfWeek.Friday) &&
+                    (DateTime.Now.Hour > 20))
 
             // Left curtain
+            g.DrawImageUnscaled(pblogo, 134, 20);
             g.FillRectangle(CURTAIN_BRUSH, rect);
 
             // Right curtain
@@ -115,6 +120,7 @@ namespace FirewatchFOVChanger
                     REGFOV_BOUNDS_PEN,
                     wx, 0,
                     wx, pbLogo.Height);
+
                 g.DrawLine(
                     REGFOV_BOUNDS_PEN,
                     pbLogo.Width - wx, 0,
@@ -141,5 +147,7 @@ Latest version at https://github.com/beatcracker
 
             e.Cancel = true;
         }
+
+        Image pblogo = Image.FromStream(new MemoryStream(Convert.FromBase64String("iVBORw0KGgoAAAANSUhEUgAAAAgAAAANCAYAAACUwi84AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMTZEaa/1AAAAUElEQVQoU2P4//8/Aq+X/g/HUDHcCqAYpwQM45UEaYaYsE+KCAUwjKEAWRIdAxXhVwDERChAdwMaxq8A7gsg3lgh+L87ihcsiIxROJj4PwMAXjEohfpkEm4AAAAASUVORK5CYII="),true));
     } // class
 }
