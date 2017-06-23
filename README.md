@@ -4,6 +4,31 @@
 
 Download executable file in [Releases](https://github.com/beatcracker/firewatch-fov-changer/releases) section.
 
+# Command line usage
+
+## Arguments
+
+* `FOV` - required FOV (55 - 110)
+* `-s` - silent. Don't show message after FOV is set.
+
+## Example
+
+### Set FOV to 75
+
+
+```
+FirewatchFOVChanger.exe 75 -s
+
+```
+
+### Set FOV to 75, silently.
+
+
+```
+FirewatchFOVChanger.exe 75 -s
+
+```
+
 # Details
 
 Default FOV in Firewatch is `55`, which is quite low for the most of the users. This app allows you to change FOV by modifying Firewatch settings in registry.
