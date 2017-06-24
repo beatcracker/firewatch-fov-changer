@@ -18,17 +18,12 @@ namespace FwfovchWpf
 
             dataModel.PropertyChanged +=
                 (s, ee) => {
-                    rightCurtain.Width =
-                        leftCurtain.Width = ScaleToCurtainWidth(dataModel.NewFov);
+                    rightCurtain.Width = leftCurtain.Width =
+                            (1f - (dataModel.NewFov - Fov.MIN_VALUE) / (float)Fov.MIN_VALUE) * CURTAIN_MAX_W;
                 };
 
             dataModel.Initialize();
             DataContext = dataModel;
-        }
-
-        float ScaleToCurtainWidth(int currentFov)
-        {
-            return (1f - (currentFov - Fov.MIN_VALUE) / (float)Fov.MIN_VALUE) * CURTAIN_MAX_W;
         }
 
         private void defaultButton_Click(object sender, RoutedEventArgs e)

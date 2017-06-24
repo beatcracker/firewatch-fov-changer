@@ -10,7 +10,17 @@
         <Slider x:Name="fovSlider" Margin="10,113,10,0" VerticalAlignment="Top" Maximum="110" Minimum="55" SmallChange="1" TickPlacement="BottomRight" Value="{Binding NewFov}" AutoToolTipPlacement="BottomRight" Height="30"/>
         <Label x:Name="minLabel" Content="Min" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="10,143,0,0" VerticalAlignment="Top"/>
         <Label x:Name="maxLabel" Content="Max" HorizontalAlignment="Right" Margin="0,143,10,0" VerticalAlignment="Top"/>
-        <Button x:Name="defaultButton" Content="Default" HorizontalAlignment="Left" Margin="10,178,0,0" VerticalAlignment="Top" Width="75" Click="defaultButton_Click"/>
+        <Button x:Name="defaultButton" Content="Default" HorizontalAlignment="Left" Margin="10,178,0,0" VerticalAlignment="Top" Width="75" Click="defaultButton_Click">
+            <Button.Style>
+                <Style>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding NewFov}" Value="{x:Static local:Fov.DEFAULT}">
+                            <Setter Property="Button.IsEnabled" Value="false"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
         <Button x:Name="applyButton" Content="Apply" HorizontalAlignment="Right" Margin="0,178,10,0" VerticalAlignment="Top" Width="75" Click="applyButton_Click"/>
         <TextBox x:Name="fovTextBox" HorizontalAlignment="Right" Height="23" Margin="0,179,90,0" TextWrapping="Wrap" Text="{Binding NewFov}" VerticalAlignment="Top" Width="42"/>
         <Label x:Name="newFovLabel" Content="New FOV" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Margin="0,175,132,0" VerticalAlignment="Top"/>
