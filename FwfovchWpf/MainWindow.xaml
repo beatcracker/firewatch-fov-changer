@@ -4,13 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FwfovchWpf"
-        mc:Ignorable="d" Height="241.265" Width="376" ResizeMode="CanMinimize" Icon="Resources/Main.ico">
+        mc:Ignorable="d" Height="229.931" Width="376" ResizeMode="CanMinimize" Icon="Resources/Main.ico">
     <Grid>
         <Image x:Name="bannerImage" Margin="10,10,10,0" VerticalAlignment="Top" Source="Resources\Banner.png" Width="350"/>
         <Slider x:Name="fovSlider" Margin="10,113,10,0" VerticalAlignment="Top" Maximum="110" Minimum="55" SmallChange="1" TickPlacement="BottomRight" Value="{Binding NewFov}" AutoToolTipPlacement="BottomRight" Height="30"/>
-        <Label x:Name="minLabel" Content="Min" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="10,143,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="maxLabel" Content="Max" HorizontalAlignment="Right" Margin="0,143,10,0" VerticalAlignment="Top"/>
-        <Button x:Name="defaultButton" Content="Default" HorizontalAlignment="Left" Margin="10,178,0,0" VerticalAlignment="Top" Width="75" Click="defaultButton_Click">
+        <Label x:Name="minLabel" Content="Min" HorizontalAlignment="Left" Margin="10,138,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="maxLabel" Content="Max" HorizontalAlignment="Right" Margin="0,138,10,0" VerticalAlignment="Top"/>
+        <Button x:Name="defaultButton" Content="Default" HorizontalAlignment="Left" Margin="10,168,0,0" VerticalAlignment="Top" Width="75" Click="defaultButton_Click">
             <Button.Style>
                 <Style>
                     <Style.Triggers>
@@ -21,10 +21,13 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button x:Name="applyButton" Content="Apply" HorizontalAlignment="Right" Margin="0,178,10,0" VerticalAlignment="Top" Width="75" Click="applyButton_Click"/>
-        <TextBox x:Name="fovTextBox" HorizontalAlignment="Right" Height="23" Margin="0,179,90,0" TextWrapping="Wrap" Text="{Binding NewFov}" VerticalAlignment="Top" Width="42"/>
-        <Label x:Name="newFovLabel" Content="New FOV" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Margin="0,175,132,0" VerticalAlignment="Top"/>
-        <Label x:Name="regFovLabel" HorizontalContentAlignment="Left" HorizontalAlignment="Left" Margin="90,175,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.567" Content="{Binding Path=CurrentFov, StringFormat=FOV {0}}"/>
+        <Button x:Name="applyButton" Content="Apply" HorizontalAlignment="Right" Margin="0,168,10,0" VerticalAlignment="Top" Width="75" Click="applyButton_Click"/>
+        <TextBox x:Name="fovTextBox" HorizontalAlignment="Right" Margin="0,169,90,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="110" Width="40"/>
+        <Label x:Name="newFovLabel" Content="New FOV" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Margin="0,165,130,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="newFovTextBlock" Margin="90,170,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <TextBlock Text="FOV: " />
+            <TextBlock Text="{Binding Path=CurrentFov, Mode=OneWay}" />
+        </TextBlock>
         <Rectangle Name="leftCurtain"  HorizontalAlignment="Left" Height="98" Margin="10,10,0,0" VerticalAlignment="Top" Width="90" Opacity="0.5">
             <Rectangle.Fill>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -41,6 +44,7 @@
                 </LinearGradientBrush>
             </Rectangle.Fill>
         </Rectangle>
-
+        <Line x:Name="leftFovBound" HorizontalAlignment="Left" Height="98" VerticalAlignment="Top"  Stroke="Black" StrokeDashArray="1 1" StrokeThickness="1" Width="90" Margin="10,10,0,0" Y2="{Binding ElementName=bannerImage, Path=ActualHeight}" Opacity="0.7"/>
+        <Line x:Name="rightFovBound" HorizontalAlignment="Right" Height="98" VerticalAlignment="Top"  Stroke="Black" StrokeDashArray="1 1" StrokeThickness="1" Width="90" Margin="0,10,10,0" Y2="{Binding ElementName=bannerImage, Path=ActualHeight}" Opacity="0.7"/>
     </Grid>
 </Window>
