@@ -53,5 +53,15 @@ namespace FwfovchWpf
         {
             dataModel.Store();
         }
+
+        private void Hyperlink_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
+        {
+            MessageBox.Show(
+@"Baked under the MIT License
+Latest version at https://github.com/beatcracker
+
+" + App.HelpText,
+            $"About {App.APP_TITLE}"); // MessageBox
+        }
     } // class
 }
