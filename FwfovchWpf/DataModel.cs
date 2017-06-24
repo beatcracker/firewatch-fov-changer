@@ -30,9 +30,10 @@ namespace FwfovchWpf
             CurrentFov = newFov;
         }
 
-        public void Drop()
+        public void Default()
         {
-            NewFov = CurrentFov = Fov.DEFAULT;
+            NewFov =
+                CurrentFov = Fov.DEFAULT;
         }
 
         public void Initialize()
