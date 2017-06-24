@@ -22,7 +22,7 @@ namespace FwfovchWpf
                         0); }
         }
 
-        private int WrapFov(int fov)
+        public static int Wrap(int fov)
         {
             if (fov < MIN_VALUE)
                 fov = MIN_VALUE;
@@ -35,14 +35,14 @@ namespace FwfovchWpf
         public int Value
         {
             get { return
-                    WrapFov(
+                    Wrap(
                         ((RegValueDirty as int?) ?? 0) / 100 + MIN_VALUE); }
 
             set {
                 Registry.SetValue(
                     REG_KEY_PATH,
                     REG_VALUE_NAME,
-                    (WrapFov(value) - MIN_VALUE) * 100); }
+                    (Wrap(value) - MIN_VALUE) * 100); }
         } // Value
 
     } // class

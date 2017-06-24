@@ -9,7 +9,7 @@ namespace FwfovchWpf
         {
             get { return newFov; }
             set {
-                newFov = value;
+                newFov = Fov.Wrap(value);
                 OnPropertyChanged("NewFov");
             }
         }

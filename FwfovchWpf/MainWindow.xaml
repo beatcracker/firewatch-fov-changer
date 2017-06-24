@@ -6,11 +6,11 @@
         xmlns:local="clr-namespace:FwfovchWpf"
         mc:Ignorable="d" Height="229.931" Width="376" ResizeMode="CanMinimize" Icon="Resources/Main.ico">
     <Grid>
-        <Image x:Name="bannerImage" Margin="10,10,10,0" VerticalAlignment="Top" Source="Resources\Banner.png" Width="350"/>
-        <Slider x:Name="fovSlider" Margin="10,113,10,0" VerticalAlignment="Top" Maximum="110" Minimum="55" SmallChange="1" TickPlacement="BottomRight" Value="{Binding NewFov}" AutoToolTipPlacement="BottomRight" Height="30"/>
+        <Image x:Name="bannerImage" Margin="10,10,10,0" VerticalAlignment="Top" Source="Resources\Banner.png" Width="350"/><Canvas x:Name="bannerimage" Margin="139,26,10,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" Width="20"/>
+        <Slider x:Name="fovSlider" TabIndex="1" Margin="10,113,10,0" VerticalAlignment="Top" Maximum="110" Minimum="55" SmallChange="1" TickPlacement="BottomRight" Value="{Binding NewFov}" AutoToolTipPlacement="BottomRight" Height="30"/>
         <Label x:Name="minLabel" Content="Min" HorizontalAlignment="Left" Margin="10,138,0,0" VerticalAlignment="Top"/>
         <Label x:Name="maxLabel" Content="Max" HorizontalAlignment="Right" Margin="0,138,10,0" VerticalAlignment="Top"/>
-        <Button x:Name="defaultButton" Content="Default" HorizontalAlignment="Left" Margin="10,168,0,0" VerticalAlignment="Top" Width="75" Click="defaultButton_Click">
+        <Button x:Name="defaultButton" TabIndex="2" Content="Default" HorizontalAlignment="Left" Margin="10,168,0,0" VerticalAlignment="Top" Width="75" Click="defaultButton_Click">
             <Button.Style>
                 <Style>
                     <Style.Triggers>
@@ -21,8 +21,8 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Button x:Name="applyButton" Content="Apply" HorizontalAlignment="Right" Margin="0,168,10,0" VerticalAlignment="Top" Width="75" Click="applyButton_Click"/>
-        <TextBox x:Name="fovTextBox" HorizontalAlignment="Right" Margin="0,169,90,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="110" Width="40"/>
+        <Button x:Name="applyButton" Content="Apply" HorizontalAlignment="Right" Margin="0,168,10,0" VerticalAlignment="Top" Width="75" TabIndex="4" Click="applyButton_Click"/>
+        <TextBox x:Name="fovTextBox" TabIndex="3" HorizontalAlignment="Right" Margin="0,168,90,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding NewFov}" Width="40" Height="24"/>
         <Label x:Name="newFovLabel" Content="New FOV" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Margin="0,165,130,0" VerticalAlignment="Top"/>
         <TextBlock x:Name="newFovTextBlock" Margin="90,170,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
             <TextBlock Text="FOV: " />

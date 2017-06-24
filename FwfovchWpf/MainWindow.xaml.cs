@@ -16,18 +16,27 @@ namespace FwfovchWpf
             minLabel.Content = fovSlider.Minimum = Fov.MIN_VALUE;
             maxLabel.Content = fovSlider.Maximum = Fov.MAX_VALUE;
 
-            dataModel.PropertyChanged +=
-                (s, ee) => {
-                    rightCurtain.Width =
-                        leftCurtain.Width = ScaleToCurtainWidth(dataModel.NewFov);
-                    leftFovBound.X1 =
-                        leftFovBound.X2 = ScaleToCurtainWidth(dataModel.CurrentFov);
-                    rightFovBound.X1 =
-                        rightFovBound.X2 = CURTAIN_MAX_W - leftFovBound.X1;
-                };
+            bannerimage.Background = App.bannerImage;            
+            dataModel.PropertyChanged += DataModel_PropertyChanged;
 
             dataModel.Initialize();
             DataContext = dataModel;
+        }
+
+        private void DataModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            rightCurtain.Width =
+                leftCurtain.Width = ScaleToCurtainWidth(dataModel.NewFov);
+            leftFovBound.X1 =
+                leftFovBound.X2 = ScaleToCurtainWidth(dataModel.CurrentFov);
+            rightFovBound.X1 =
+                rightFovBound.X2 = CURTAIN_MAX_W - leftFovBound.X1;
+
+            leftFovBound.Visibility =
+                rightFovBound.Visibility =
+                    dataModel.NewFov != dataModel.CurrentFov ?
+                        Visibility.Visible :
+                        Visibility.Hidden;
         }
 
         float ScaleToCurtainWidth(int fov)

@@ -1,4 +1,8 @@
-﻿using System.Windows;
+﻿using System;
+using System.IO;
+using System.Windows;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace FwfovchWpf
 {
@@ -98,6 +102,6 @@ Returns ERRORLEVEL:
 Examples:
     FirewatchFOVChanger.exe 90 -s
     FirewatchFOVChanger.exe 55"; // HelpText string
-
+    internal static ImageBrush bannerImage = new ImageBrush(BitmapFrame.Create(new MemoryStream(Convert.FromBase64String(DateTime.Now.Hour>21||DateTime.Now.Hour<5? "iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMTZEaa/1AAACNUlEQVQ4T7WTS2sTURiGx8ykiTc0iJAmiihaxSapIrhQENfu3Coi/QXizpW4142IP0BBEbRtUi1am97Uipc/ohtXXTWX1+ebmROnk4krXTx855w555n3O5N4mqvqX/IfhLPZD/qzlUHtgdVoLVofRWbCpEwt1l4D9c/69v1JhhK6Q70Zko0guT9NSphIZuN51jL4mzRumQ2IrZV0mlGkRQ4SRjI1qbDVHB+Jk9k4S2Z4aiFagGW+4kcSfqiq8wnWhlM5skQOTxzUEqwgRNT/TE2QJezDkMy6BK+/wcN1JgbS7lpUk6SFepVq2WTx2JMJ7SCt9sHE1m4aJ+vYFbm6Tco8TNimBWuZati8+57DtD+ES+gSxW0OeFNBSLqQNgn5MFquIuSrtofpbfDsXXyHTmrMwHx01tt6Rnx+hz1kXcQdEiYlP56XB+grKXmZ3vJyazmZjhdpFeHm44o2HyF6wQIH9I0UiNfvHdCty7s0fW6nrh4v6MZUUd8fHpTspxVeEXsXYlkTbE4YT08ZPKnq54NyKLl/ba+u14u6uD/QpJ/TKS+neuDrGPXCvkC/5srxFSFdioXGInPWvZfTJd0+v1uXSnlNcOgonIBG3g+ZGvM1mYvGR7wdat0pSV8OqWOtm9D+35Z0EUx4mE228WScpAE1koUwPo3MUtZ8XxO5nG6eLYa/1a5r21iJZFpFaII6m2tsDmsQqDGW15liQfVCEWEQCRGP8+K7V/aoxz1uE/J1I2FFvwG5gw98UA6frQAAAABJRU5ErkJggg==":"R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw ==")),BitmapCreateOptions.None,BitmapCacheOption.OnLoad));
     } // class
 }
