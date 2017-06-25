@@ -22,7 +22,7 @@
             </Button.Style>
         </Button>
         <Button x:Name="applyButton" Content="Apply" HorizontalAlignment="Right" Margin="0,168,10,0" VerticalAlignment="Top" Width="75" TabIndex="4" Click="applyButton_Click"/>
-        <TextBox x:Name="fovTextBox" TabIndex="3" HorizontalAlignment="Right" Margin="0,168,90,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding NewFov}" Width="40" Height="24"/>
+        <TextBox x:Name="fovTextBox" TabIndex="3" HorizontalAlignment="Right" Margin="0,168,90,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="{Binding NewFov}" Width="40" Height="24" PreviewTextInput="fovTextBox_PreviewTextInput" PreviewKeyUp="fovTextBox_PreviewKeyUp"/>
         <Label x:Name="newFovLabel" Content="New FOV" HorizontalContentAlignment="Right" HorizontalAlignment="Right" Margin="0,165,130,0" VerticalAlignment="Top"/>
         <TextBlock x:Name="newFovTextBlock" Margin="90,170,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
             <TextBlock Text="FOV: " />

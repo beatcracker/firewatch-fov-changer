@@ -1,4 +1,7 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Navigation;
 
 namespace FwfovchWpf
 {
@@ -54,14 +57,28 @@ namespace FwfovchWpf
             data.Store();
         }
 
-        private void Hyperlink_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
+        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
         {
             MessageBox.Show(
 @"Baked under the MIT License
 Latest version at https://github.com/beatcracker
 
 " + App.HelpText,
-            $"About {App.APP_TITLE}"); // MessageBox
+            $"About {App.APP_TITLE}"); // eof MessageBox
+        }
+
+        private void fovTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            int ival = Fov.DEFAULT;
+            e.Handled = !int.TryParse(e.Text, out ival);
+        }
+
+        private void fovTextBox_PreviewKeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+                (sender as TextBox)?.
+                    GetBindingExpression(TextBox.TextProperty).
+                        UpdateSource();
         }
     } // class
 }
