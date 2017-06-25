@@ -22,8 +22,7 @@ namespace FwfovchWpf
 
         internal const string APP_TITLE = "Firewatch FOV Changer";
 
-        public string Title
-        { get { return APP_TITLE; } }
+        public string Title { get { return APP_TITLE; } }
 
         enum ErrorLevel : int
         {

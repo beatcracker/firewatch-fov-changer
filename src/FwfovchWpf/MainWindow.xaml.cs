@@ -20,13 +20,13 @@ namespace FwfovchWpf
             maxLabel.Content = fovSlider.Maximum = Fov.MAX_VALUE;
 
             bannerimage.Background = App.bannerImage;            
-            data.PropertyChanged += DataModel_PropertyChanged;
+            data.PropertyChanged += ViewModel_PropertyChanged;
 
             data.Initialize();
             DataContext = data;
         }
 
-        private void DataModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private void ViewModel_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             rightCurtain.Width =
                 leftCurtain.Width = ScaleToCurtainWidth(data.NewFov);
