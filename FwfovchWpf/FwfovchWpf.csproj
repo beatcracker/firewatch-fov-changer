@@ -58,8 +58,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DataModel.cs" />
-    <Compile Include="Property.cs" />
+    <Compile Include="ViewModel.cs" />
     <Compile Include="Fov.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -2,7 +2,7 @@
 
 namespace FwfovchWpf
 {
-    public class DataModel : INotifyPropertyChanged
+    public class ViewModel : INotifyPropertyChanged
     {
         int newFov;
         public int NewFov
