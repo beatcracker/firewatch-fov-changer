@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirewatchFOVChanger", "FirewatchFOVChanger.csproj", "{900A9FAD-275C-41A6-9715-531A8C784CF2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FwfovchWpf", "..\FwfovchWpf\FwfovchWpf.csproj", "{81946C1D-FD55-411D-8681-38350476CD01}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FwfovchWpf", "FwfovchWpf\FwfovchWpf.csproj", "{81946C1D-FD55-411D-8681-38350476CD01}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,10 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{900A9FAD-275C-41A6-9715-531A8C784CF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{900A9FAD-275C-41A6-9715-531A8C784CF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{900A9FAD-275C-41A6-9715-531A8C784CF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{900A9FAD-275C-41A6-9715-531A8C784CF2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{81946C1D-FD55-411D-8681-38350476CD01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{81946C1D-FD55-411D-8681-38350476CD01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81946C1D-FD55-411D-8681-38350476CD01}.Release|Any CPU.ActiveCfg = Release|Any CPU
