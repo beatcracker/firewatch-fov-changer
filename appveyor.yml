@@ -17,6 +17,9 @@ matrix:
 
 skip_commits:
   message: /^(?=.*update)(?=.*readme).*$/
+  
+pull_requests:
+  do_not_increment_build_number: true
 
 version: 1.0.{build}
 
