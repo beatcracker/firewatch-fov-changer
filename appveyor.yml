@@ -32,4 +32,3 @@ deploy:
   artifact: 'Firewatch FOV Changer'
   on:
     branch: master
-    appveyor_repo_tag: true  
