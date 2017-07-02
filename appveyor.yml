@@ -32,3 +32,5 @@ deploy:
   artifact: 'Firewatch FOV Changer'
   on:
     branch: master
+
+skip_tags: true
